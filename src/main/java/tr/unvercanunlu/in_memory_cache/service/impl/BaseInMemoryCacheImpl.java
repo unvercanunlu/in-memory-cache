@@ -22,7 +22,7 @@ public abstract class BaseInMemoryCacheImpl<K, V> implements Cache<K, V> {
   }
 
   @Override
-  public K put(K key, V value) {
+  public K store(K key, V value) {
     K processedKey = preprocessKey(key);
 
     if (keyValidator.isInvalid(processedKey)) {
@@ -56,7 +56,7 @@ public abstract class BaseInMemoryCacheImpl<K, V> implements Cache<K, V> {
   }
 
   @Override
-  public void remove(K key) {
+  public void evict(K key) {
     K processedKey = preprocessKey(key);
 
     if (keyValidator.isInvalid(processedKey)) {
@@ -78,6 +78,11 @@ public abstract class BaseInMemoryCacheImpl<K, V> implements Cache<K, V> {
   @Override
   public void clear() {
     store.clear();
+  }
+
+  @Override
+  public int size() {
+    return store.size();
   }
 
   @Override
