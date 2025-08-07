@@ -1,4 +1,4 @@
-# 🧠 In-Memory Cache (Java)
+# In-Memory Cache (Java)
 
 A simple, fast, and generic in-memory key-value cache written in Java 21. Supports `Integer`, `String`, and `UUID` keys with validation and key
 generation.
