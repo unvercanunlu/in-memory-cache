@@ -13,7 +13,7 @@ import tr.unvercanunlu.in_memory_cache.validation.Validator;
 @Slf4j
 public abstract class BaseInMemoryCacheImpl<K, V> implements Cache<K, V> {
 
-  protected final ConcurrentMap<K, V> store = new ConcurrentHashMap<>();
+  protected final ConcurrentMap<K, V> pairs = new ConcurrentHashMap<>();
 
   protected final Validator<K> keyValidator;
 
@@ -35,7 +35,7 @@ public abstract class BaseInMemoryCacheImpl<K, V> implements Cache<K, V> {
       throw new IllegalArgumentException("Duplicate key=%s".formatted(Objects.toString(key, "null")));
     }
 
-    store.put(processedKey, value);
+    pairs.put(processedKey, value);
 
     return processedKey;
   }
@@ -51,7 +51,7 @@ public abstract class BaseInMemoryCacheImpl<K, V> implements Cache<K, V> {
     }
 
     return Optional.ofNullable(
-        store.get(processedKey)
+        pairs.get(processedKey)
     );
   }
 
@@ -65,24 +65,24 @@ public abstract class BaseInMemoryCacheImpl<K, V> implements Cache<K, V> {
       throw new IllegalArgumentException(message);
     }
 
-    store.remove(processedKey);
+    pairs.remove(processedKey);
   }
 
   @Override
   public boolean checkExists(K key) {
     K processedKey = preprocessKey(key);
 
-    return store.containsKey(processedKey);
+    return pairs.containsKey(processedKey);
   }
 
   @Override
   public void clear() {
-    store.clear();
+    pairs.clear();
   }
 
   @Override
   public int size() {
-    return store.size();
+    return pairs.size();
   }
 
   @Override
