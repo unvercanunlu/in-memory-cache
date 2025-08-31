@@ -1,4 +1,4 @@
-package tr.unvercanunlu.in_memory_cache.service;
+package tr.unvercanunlu.in_memory_cache.service.cache;
 
 import java.util.Optional;
 
@@ -15,7 +15,5 @@ public interface Cache<K, V> {
   void clear();
 
   int size();
-
-  K generateKey();
 
 }
