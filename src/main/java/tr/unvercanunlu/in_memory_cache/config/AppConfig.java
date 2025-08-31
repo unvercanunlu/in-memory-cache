@@ -6,20 +6,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class AppConfig {
 
-  // integer key
-  public static final int INTEGER_KEY_MIN = 1;
-  public static final int INTEGER_KEY_MAX = 1_000_000;
+  // integer
+  public static final int NUMBER_MIN = 1;
+  public static final int NUMBER_MAX = 1_000_000;
 
-  // string key
-  public static final int STRING_KEY_LENGTH_MIN = 1;
-  public static final int STRING_KEY_LENGTH_MAX = 20;
+  // string
+  public static final int TEXT_LENGTH_MIN = 1;
+  public static final int TEXT_LENGTH_MAX = 20;
 
   // random string key
-  public static final int RANDOM_STRING_KEY_LENGTH_MAX = 8;
-  public static final int RANDOM_STRING_KEY_LENGTH_MIN = 1;
-  public static final boolean RANDOM_STRING_KEY_WITH_DIGITS = true;
+  public static final int GENERATED_TEXT_LENGTH_MAX = 8;
+  public static final int GENERATED_TEXT_LENGTH_MIN = 1;
+  public static final boolean GENERATED_TEXT_WITH_DIGITS = true;
 
   // key generation try count
-  public static final int RANDOM_KEY_GENERATION_MAX_TRIES = 20;
+  public static final int GENERATION_MAX_TRIES = 20;
 
 }

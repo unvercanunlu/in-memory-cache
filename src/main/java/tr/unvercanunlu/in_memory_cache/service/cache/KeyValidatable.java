@@ -1,6 +1,7 @@
 package tr.unvercanunlu.in_memory_cache.service.cache;
 
-public interface ValidKeyCache<K> {
+@FunctionalInterface
+public interface KeyValidatable<K> {
 
   boolean isKeyValid(K key);
 

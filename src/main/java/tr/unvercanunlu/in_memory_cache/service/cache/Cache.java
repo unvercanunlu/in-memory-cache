@@ -10,7 +10,7 @@ public interface Cache<K, V> {
 
   void evict(K key);
 
-  boolean checkExists(K key);
+  boolean containsKey(K key);
 
   void clear();
 

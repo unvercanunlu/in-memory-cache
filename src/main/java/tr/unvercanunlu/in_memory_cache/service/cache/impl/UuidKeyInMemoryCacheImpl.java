@@ -1,13 +1,13 @@
 package tr.unvercanunlu.in_memory_cache.service.cache.impl;
 
+import static tr.unvercanunlu.in_memory_cache.service.Component.UUID_GENERATOR;
+
 import java.util.UUID;
-import tr.unvercanunlu.in_memory_cache.service.generator.impl.UuidGenerator;
-import tr.unvercanunlu.in_memory_cache.service.validator.impl.StandardValidator;
 
 public class UuidKeyInMemoryCacheImpl<V> extends BaseInMemoryCacheImpl<UUID, V> {
 
   public UuidKeyInMemoryCacheImpl() {
-    super(new UuidGenerator(), new StandardValidator<>(), new StandardValidator<>());
+    super(UUID_GENERATOR);
   }
 
 }
