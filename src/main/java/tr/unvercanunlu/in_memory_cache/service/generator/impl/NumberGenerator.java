@@ -11,7 +11,7 @@ public class NumberGenerator implements Generator<Integer> {
   @Override
   public Integer generate() {
     return ThreadLocalRandom.current()
-        .nextInt(NUMBER_MIN, NUMBER_MAX);
+        .nextInt(NUMBER_MIN, NUMBER_MAX + 1);
   }
 
 }

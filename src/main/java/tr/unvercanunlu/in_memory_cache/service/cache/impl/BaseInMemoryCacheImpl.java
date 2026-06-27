@@ -113,6 +113,10 @@ public abstract class BaseInMemoryCacheImpl<K, V>
   public boolean containsKey(K key) {
     K processedKey = keyPreprocessor.preprocess(key);
 
+    if (!isKeyValid(processedKey)) {
+      handleInvalidKey(key);
+    }
+
     return pairs.containsKey(processedKey);
   }
 
