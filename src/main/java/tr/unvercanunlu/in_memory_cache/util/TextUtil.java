@@ -1,19 +1,28 @@
 package tr.unvercanunlu.in_memory_cache.util;
 
+import java.text.Normalizer;
+import java.util.Locale;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.regex.Pattern;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TextUtil {
 
+  private static final Pattern COMBINING_MARKS = Pattern.compile("\\p{M}+");
+
   public static String normalize(String text) {
     if (text == null) {
       return null;
     }
 
-    return text.trim().toLowerCase();
+    // NFD decomposition + combining mark removal ensures consistent normalization across all scripts.
+    // For Turkish: İ (U+0130) → i + combining dot → i (cache key consistency).
+    // For all scripts: combining marks (diacritics, tone marks) are stripped.
+    String decomposed = Normalizer.normalize(text.trim(), Normalizer.Form.NFD);
+    return COMBINING_MARKS.matcher(decomposed).replaceAll("").toLowerCase(Locale.ROOT);
   }
 
   public static String randomTextGenerate(int minLength, int maxLength, boolean containsDigit) {

@@ -44,6 +44,16 @@ class TextUtilTest {
   }
 
   @Test
+  void normalizeRemovesCombiningMarksFromAllScripts() {
+    // Combining marks (tone marks, diacritics) are removed from all scripts, not just Turkish.
+    // Vietnamese 'à' (U+00E0, precomposed) decomposes to 'a' + grave accent (U+0300),
+    // and the combining mark is removed, resulting in plain 'a'.
+    // This normalization applies to all Unicode scripts: Vietnamese, Arabic, etc.
+    assertEquals("a", TextUtil.normalize("à"));
+    assertEquals("cafe", TextUtil.normalize("café"));
+  }
+
+  @Test
   void randomTextGenerateReturnsExactLengthWhenMinAndMaxAreEqual() {
     String value = TextUtil.randomTextGenerate(6, 6, true);
 
